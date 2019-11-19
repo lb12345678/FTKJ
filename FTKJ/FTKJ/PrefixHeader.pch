@@ -1,0 +1,48 @@
+//
+//  PrefixHeader.pch
+//  FreshMerchants
+//
+//  Created by IOS on 2019/3/19.
+//  Copyright © 2019年 xiayin. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#endif
+#import <Availability.h>
+#define REDPACKET_AVALABLE
+
+#ifdef __OBJC__
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+//当前屏幕的宽度
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+//当前屏幕的高度
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+#define Nav_Height ([[UIApplication sharedApplication] statusBarFrame].size.height + self.navigationController.navigationBar.frame.size.height)
+
+#import "Toos.h"
+
+#import "Contest.h"
+
+
+
+//#import "UIView+WTExtension.h"
+//#import "NSString+WTExtension.h"
+//#import "UIImageView+WTExtension.h"
+
+//#import "WTConst.h"
+//
+//#import "WTUtils.h"
+
+#define DEMO_CALL 1
+
+#if DEMO_CALL == 1
+
+#endif
+
+
+
+#endif /* PrefixHeader_pch */
