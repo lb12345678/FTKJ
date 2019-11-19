@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C8C5B11F97037D9431EC0F5 /* libPods-FTKJ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93626C4BB4C72EE1EEB448CA /* libPods-FTKJ.a */; };
 		81AF820023839DAA0004D92B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AF81FF23839DAA0004D92B /* AppDelegate.m */; };
 		81AF820323839DAA0004D92B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81AF820223839DAA0004D92B /* ViewController.m */; };
 		81AF820623839DAA0004D92B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AF820423839DAA0004D92B /* Main.storyboard */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24FB7AF5AD697FEAD880C6C4 /* Pods-FTKJ.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTKJ.release.xcconfig"; path = "Target Support Files/Pods-FTKJ/Pods-FTKJ.release.xcconfig"; sourceTree = "<group>"; };
+		2DAFB2D2CFC39F8504FC7C70 /* Pods-FTKJ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FTKJ.debug.xcconfig"; path = "Target Support Files/Pods-FTKJ/Pods-FTKJ.debug.xcconfig"; sourceTree = "<group>"; };
 		81AF81FB23839DAA0004D92B /* FTKJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FTKJ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AF81FE23839DAA0004D92B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		81AF81FF23839DAA0004D92B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -28,6 +31,7 @@
 		81AF820D23839DAC0004D92B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81AF820F23839DAC0004D92B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81AF821023839DAC0004D92B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		93626C4BB4C72EE1EEB448CA /* libPods-FTKJ.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FTKJ.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C8C5B11F97037D9431EC0F5 /* libPods-FTKJ.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +51,8 @@
 			children = (
 				81AF81FD23839DAA0004D92B /* FTKJ */,
 				81AF81FC23839DAA0004D92B /* Products */,
+				F120FB35FFD132979E338406 /* Pods */,
+				9FE25810743D03F2127E89F3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,6 +81,23 @@
 			path = FTKJ;
 			sourceTree = "<group>";
 		};
+		9FE25810743D03F2127E89F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				93626C4BB4C72EE1EEB448CA /* libPods-FTKJ.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F120FB35FFD132979E338406 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2DAFB2D2CFC39F8504FC7C70 /* Pods-FTKJ.debug.xcconfig */,
+				24FB7AF5AD697FEAD880C6C4 /* Pods-FTKJ.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -81,9 +105,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81AF821423839DAC0004D92B /* Build configuration list for PBXNativeTarget "FTKJ" */;
 			buildPhases = (
+				B955C9F760545FBE8621DCBC /* [CP] Check Pods Manifest.lock */,
 				81AF81F723839DAA0004D92B /* Sources */,
 				81AF81F823839DAA0004D92B /* Frameworks */,
 				81AF81F923839DAA0004D92B /* Resources */,
+				0545CBC590D0AFBE04B58A66 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -138,6 +164,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0545CBC590D0AFBE04B58A66 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FTKJ/Pods-FTKJ-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FTKJ/Pods-FTKJ-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FTKJ/Pods-FTKJ-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B955C9F760545FBE8621DCBC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FTKJ-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		81AF81F723839DAA0004D92B /* Sources */ = {
@@ -287,35 +355,41 @@
 		};
 		81AF821523839DAC0004D92B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DAFB2D2CFC39F8504FC7C70 /* Pods-FTKJ.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZT6WPA2YA3;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = FTKJ/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = WT.FTKJ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		81AF821623839DAC0004D92B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24FB7AF5AD697FEAD880C6C4 /* Pods-FTKJ.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZT6WPA2YA3;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = FTKJ/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = WT.FTKJ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
