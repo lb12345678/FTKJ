@@ -64,7 +64,8 @@
 
 - (void)zhiFubao:(NSString *)string;
 
-
+#pragma mark----照相机或者相册
+-(void)setUpWithNewBigHeaderImage:(NSString *)type;
 @end
 
 

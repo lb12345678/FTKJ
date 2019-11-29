@@ -23,21 +23,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    
-   
-    
-    [[UINavigationBar appearance] setTitleTextAttributes:
-     @{NSFontAttributeName:[UIFont setFontWithSize:kWidthChange(18)],
-       NSForegroundColorAttributeName:[UIColor blackColor]}];
-    
-    
-//    DengLuTanKuangView *DengLu = [[DengLuTanKuangView alloc]initWithFrame:CGRectMake(kScreenWidth / 2 - kWidthChange(90), kScreenHeight / 2 - kWidthChange(118) / 2, kWidthChange(180), kWidthChange(118))];
-//    
-//    if ([Toos isNotBlank:DatabaseInstance().user.token] && [Toos isNotBlank:[Toos setUpWithObjectForKey:@"loginTime"]]) {
-//        [[UIApplication sharedApplication].keyWindow addSubview:DengLu];
-//        
-//    }
-//    
+
     
     
 }
@@ -59,7 +45,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     
-    UIImage *bgImage = [UIImage imageNamed:@"navBag"];
+    UIImage *bgImage = [UIImage imageNamed:@"bg7-1"];
     
     bgImage = [bgImage resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeStretch];
     
@@ -155,6 +141,17 @@
     [myView presentViewController:Sheet animated:YES completion:nil];
     
 }
+
+-(void)setUpWithNewBigHeaderImage:(NSString *)type {
+    if ([type intValue] == 0) {
+        [self pictureFromCamera:@"1"];
+    }else {
+        
+         [self pickerPictureFromAlbum];
+    }
+    
+}
+
 
 //拍照功能----照相机
 - (void)pictureFromCamera:(NSString *)type {

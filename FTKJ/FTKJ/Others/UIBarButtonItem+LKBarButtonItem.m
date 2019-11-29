@@ -68,8 +68,8 @@
 
     if (isBack) {
 
-        NSString *imageName = @"返回";
-        NSString *highlighted_imageName = @"返回";
+        NSString *imageName = @"box14-1";
+        NSString *highlighted_imageName = @"box14-1";
         [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
         [btn setImage:[UIImage imageNamed:highlighted_imageName] forState:UIControlStateHighlighted];
        

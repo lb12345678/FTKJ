@@ -19,10 +19,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,retain)UIButton *MoreBT;
 
+@property(nonatomic,retain)NSMutableArray *timeArray;
 
--(void)setUpWithNewBigTimeStr:(NSString *)timeStr;
+@property(nonatomic,retain)NSString *timeStr;
 
+-(void)setUpWithNewBigTimeStr:(NSString *)timeStr type:(NSString *)type;
 
+@property(nonatomic,retain)NSTimer *addressTime;
 
 
 

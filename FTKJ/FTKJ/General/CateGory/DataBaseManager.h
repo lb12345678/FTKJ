@@ -40,6 +40,10 @@ extern "C" {
 
 @property(nonatomic,retain)NSMutableDictionary *bigDic;
 
+@property(nonatomic,assign)NSInteger selectNumber;
+
+
+@property(nonatomic,retain)NSString *order_str;
 
 
 @end

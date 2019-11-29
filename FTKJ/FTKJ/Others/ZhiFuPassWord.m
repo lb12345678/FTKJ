@@ -71,7 +71,7 @@ static const CGFloat boxWH = 40;
     UIButton *deleteBT = [UIButton buttonWithType:UIButtonTypeCustom];
     deleteBT.frame = CGRectMake(self.bigView.frame.size.width - 15 - kWidthChange(20), kHeightChange(15), kWidthChange(20), kHeightChange(20));
     
-    [deleteBT setImage:[UIImage imageNamed:@"删除账号"] forState:UIControlStateNormal];
+    [deleteBT setImage:[UIImage imageNamed:@"box22"] forState:UIControlStateNormal];
   
     [self.bigView addSubview:deleteBT];
     
@@ -83,7 +83,7 @@ static const CGFloat boxWH = 40;
     
     
     
-    self.moneylabel = [Toos setUpWithUserLabel:@"￥199.00" CGRect:CGRectMake(0, CGRectGetMaxY(linelabel.frame) , kScreenWidth - 66, kHeightChange(114)) color:[UIColor clearColor] textColor:newColor(245, 61, 5, 1) textSize:kWidthChange(30)];
+    self.moneylabel = [Toos setUpWithUserLabel:@"￥199.00" CGRect:CGRectMake(0, CGRectGetMaxY(linelabel.frame) , kScreenWidth - 66, kHeightChange(114)) color:[UIColor clearColor] textColor:newColor(229, 56, 40, 1) textSize:kWidthChange(30)];
     
     self.moneylabel.textAlignment = NSTextAlignmentCenter;
     [self.bigView addSubview:self.moneylabel];

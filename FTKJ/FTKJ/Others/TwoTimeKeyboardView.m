@@ -13,6 +13,11 @@
 #define MAINCOLOR [UIColor colorWithRed:255/255.0 green:70/255.0 blue:70/255.0 alpha:1]
 #define RGB(R, G, B ,P)    [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:P]
 
+@interface TwoTimeKeyboardView()<UITextFieldDelegate>
+
+
+@end
+
 @implementation TwoTimeKeyboardView
 @synthesize viewselect,pickview,viewline1,viewline2,lbday,lbyear,lbhouar,lbmouth,lbmintes;
 
@@ -24,102 +29,156 @@
 }
 */
 
--(id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if(self)
-    {
-        
-        viewtopbutton = [[UIView alloc] initWithFrame:CGRectZero];
-        [viewtopbutton setBackgroundColor:[UIColor whiteColor]];
-        btstart = [[UIButton alloc] initWithFrame:CGRectZero];
-        [btstart setBackgroundColor:MAINCOLOR];
-        [btstart setTitle:@"开始时间" forState:UIControlStateNormal];
-        btstart.hidden=YES;
-        [btstart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btstart.titleLabel setFont:[UIFont fontWithName:ARIAL size:13]];
-        [btstart setTag:1];
-        [btstart addTarget:self action:@selector(startAction) forControlEvents:UIControlEventTouchUpInside];
-        
-        btend = [[UIButton alloc] initWithFrame:CGRectZero];
-        [btend setBackgroundColor:[UIColor whiteColor]];
-        [btend setTitle:@"结束时间" forState:UIControlStateNormal];
-        [btend setTitleColor:RGB(30, 30, 30, 1) forState:UIControlStateNormal];
-        [btend.titleLabel setFont:[UIFont fontWithName:ARIAL size:13]];
-        btend.hidden=YES;
-        [btend setTag:2];
-        [btend addTarget:self action:@selector(endAction) forControlEvents:UIControlEventTouchUpInside];
-        
-        viewbottombt = [[UIView alloc] initWithFrame:CGRectZero];
-        [viewbottombt setBackgroundColor:[UIColor whiteColor]];
-        
-        btok = [[UIButton alloc] initWithFrame:CGRectZero];
-        [btok setTitle:@"确认" forState:UIControlStateNormal];
-        [btok setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btok.titleLabel setFont:[UIFont fontWithName:ARIAL size:13]];
-        [btok setBackgroundColor:MAINCOLOR];
-        [btok.layer setMasksToBounds:YES];
-        [btok addTarget:self action:@selector(okAction) forControlEvents:UIControlEventTouchUpInside];
-        
-        btcancle = [[UIButton alloc] initWithFrame:CGRectZero];
-        [btcancle setTitle:@"取消" forState:UIControlStateNormal];
-        [btcancle setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btcancle.titleLabel setFont:[UIFont fontWithName:ARIAL size:13]];
-        [btcancle setBackgroundColor:RGB(167, 167, 167, 1)];
-        [btcancle.layer setMasksToBounds:YES];
-        [btcancle addTarget:self action:@selector(cancleAction) forControlEvents:UIControlEventTouchUpInside];
-        
-        viewselect = [[UIView alloc]initWithFrame:CGRectZero];
-        [viewselect setBackgroundColor:[UIColor whiteColor]];
-        
-        viewline1 = [[UIView alloc]initWithFrame:CGRectZero];
-        [viewline1 setBackgroundColor:[UIColor colorWithRed:234/255.0 green:234/255.0 blue:234/255.0 alpha:1]];
-        
-        viewline2 = [[UIView alloc]initWithFrame:CGRectZero];
-        [viewline2 setBackgroundColor:[UIColor colorWithRed:234/255.0 green:234/255.0 blue:234/255.0 alpha:1]];
-        
-        
-        pickview = [[UIPickerView alloc]initWithFrame:CGRectZero];
-        [pickview setDelegate:self];
-        [pickview setDataSource:self];
-        [pickview setBackgroundColor:[UIColor whiteColor]];
-        
-        arralltitlelb = [NSMutableArray new];
-        
-        lbyear = [[UILabel alloc]initWithFrame:CGRectZero];
-        [lbyear setTextColor:MAINCOLOR];
-        [lbyear setTextAlignment:NSTextAlignmentCenter];
-        [lbyear setFont:[UIFont fontWithName:@"Arial" size:14]];
-        
-        lbmouth = [[UILabel alloc]initWithFrame:CGRectZero];
-        [lbmouth setTextColor:MAINCOLOR];
-        [lbmouth setTextAlignment:NSTextAlignmentCenter];
-        [lbmouth setFont:[UIFont fontWithName:@"Arial" size:14]];
-        
-        
-        lbday = [[UILabel alloc]initWithFrame:CGRectZero];
-        [lbday setTextColor:MAINCOLOR];
-        [lbday setTextAlignment:NSTextAlignmentCenter];
-        [lbday setFont:[UIFont fontWithName:@"Arial" size:14]];
-        
-        lbhouar = [[UILabel alloc]initWithFrame:CGRectZero];
-        [lbhouar setTextColor:MAINCOLOR];
-        [lbhouar setTextAlignment:NSTextAlignmentCenter];
-        [lbhouar setFont:[UIFont fontWithName:@"Arial" size:14]];
-        
-        lbmintes = [[UILabel alloc]initWithFrame:CGRectZero];
-        [lbmintes setTextColor:MAINCOLOR];
-        [lbmintes setTextAlignment:NSTextAlignmentCenter];
-        [lbmintes setFont:[UIFont fontWithName:@"Arial" size:14]];
-        
-        [arralltitlelb addObject:lbyear];
-        [arralltitlelb addObject:lbmouth];
-        [arralltitlelb addObject:lbday];
-        [arralltitlelb addObject:lbhouar];
-        [arralltitlelb addObject:lbmintes];
-    }
-    return self;
-}
+//-(id)initWithFrame:(CGRect)frame
+//{
+//    self = [super initWithFrame:frame];
+//    if(self)
+//    {
+//
+//
+//
+////        UIButton *canculBT = [UIButton buttonWithType:UIButtonTypeCustom];
+////        canculBT.frame = CGRectMake(kWidthChange(20), 0, [Toos textRect:@"取消" textFont:[UIFont systemFontOfSize:kWidthChange(18)]], kWidthChange(50));
+////        [canculBT setTitle:@"取消" forState:UIControlStateNormal];
+////        [canculBT setTitleColor:newColor(133, 134, 135, 1) forState:UIControlStateNormal];
+////        canculBT.titleLabel.font = [UIFont systemFontOfSize:kWidthChange(18)];
+////        [self.bigView addSubview:canculBT];
+////
+////        UIButton *sureBT = [UIButton buttonWithType:UIButtonTypeCustom];
+////        sureBT.frame = CGRectMake(kScreenWidth -kWidthChange(20) -[Toos textRect:@"取消" textFont:[UIFont systemFontOfSize:kWidthChange(18)]], 0, [Toos textRect:@"取消" textFont:[UIFont systemFontOfSize:kWidthChange(18)]], kWidthChange(50));
+////        [sureBT setTitle:@"完成" forState:UIControlStateNormal];
+////        [sureBT setTitleColor:newColor(241, 90, 0, 1) forState:UIControlStateNormal];
+////        sureBT.titleLabel.font = [UIFont systemFontOfSize:kWidthChange(18)];
+////        [self.bigView addSubview:sureBT];
+////
+////
+////        UILabel *lineLabel = [Toos setUpWithUserLabel:@"" CGRect:CGRectMake(0, CGRectGetMaxY(sureBT.frame), kScreenWidth, 1) color:lineColor_gary textColor:RedColor textSize:14];
+////        [self.bigView addSubview:lineLabel];
+////
+////        for (int i = 0; i < 2; i++) {
+////
+////            UITextField *timeTF = [[UITextField alloc]initWithFrame:CGRectMake(kWidthChange(20) + i * (kScreenWidth - kWidthChange(90)) / 2 + i * kWidthChange(50), CGRectGetMaxY(lineLabel.frame) + kWidthChange(25), (kScreenWidth - kWidthChange(90)) / 2 , kWidthChange(40))];
+////            timeTF.textColor = newColor(250, 83, 0, 1);
+////
+////            if (i == 0) {
+////                timeTF.placeholder = @"开始日期";
+////            }else {
+////
+////
+////                timeTF.placeholder = @"结束日期";
+////            }
+////
+////            timeTF.delegate = self;
+////            timeTF.font = [UIFont systemFontOfSize:kWidthChange(16)];
+////            timeTF.textAlignment = NSTextAlignmentCenter;
+////            if ( i == 0) {
+////                self.startTimeTF = timeTF;
+////            }else {
+////
+////                self.endTimeTF = timeTF;
+////
+////            }
+////            [self.bigView addSubview:timeTF];
+////
+////            UILabel *timeLineLabel = [Toos setUpWithUserLabel:@"" CGRect:CGRectMake(kWidthChange(20) + i * (kScreenWidth - kWidthChange(40)) / 2, CGRectGetMaxY(timeTF.frame), (kScreenWidth - kWidthChange(40)) / 2 - kWidthChange(50), kWidthChange(1)) color:lineColor_gary textColor:RedColor textSize:14];
+////            [self.bigView addSubview:timeLineLabel];
+////              timeLineLabel.tag = i + 10;
+////        }
+////
+////
+//
+//
+//
+//
+//
+//
+////        viewtopbutton = [[UIView alloc] initWithFrame:CGRectZero];
+////        [viewtopbutton setBackgroundColor:[UIColor whiteColor]];
+////        btstart = [[UIButton alloc] initWithFrame:CGRectZero];
+////        [btstart setBackgroundColor:MAINCOLOR];
+////        [btstart setTitle:@"开始时间" forState:UIControlStateNormal];
+////        btstart.hidden=YES;
+////        [btstart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+////        [btstart.titleLabel setFont:[UIFont fontWithName:ARIAL size:13]];
+////        [btstart setTag:1];
+////        [btstart addTarget:self action:@selector(startAction) forControlEvents:UIControlEventTouchUpInside];
+////
+////        btend = [[UIButton alloc] initWithFrame:CGRectZero];
+////        [btend setBackgroundColor:[UIColor whiteColor]];
+////        [btend setTitle:@"结束时间" forState:UIControlStateNormal];
+////        [btend setTitleColor:RGB(30, 30, 30, 1) forState:UIControlStateNormal];
+////        [btend.titleLabel setFont:[UIFont fontWithName:ARIAL size:13]];
+////        btend.hidden=YES;
+////        [btend setTag:2];
+////        [btend addTarget:self action:@selector(endAction) forControlEvents:UIControlEventTouchUpInside];
+////
+////        viewbottombt = [[UIView alloc] initWithFrame:CGRectZero];
+////        [viewbottombt setBackgroundColor:[UIColor whiteColor]];
+////
+////        btok = [[UIButton alloc] initWithFrame:CGRectZero];
+////        [btok setTitle:@"确认" forState:UIControlStateNormal];
+////        [btok setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+////        [btok.titleLabel setFont:[UIFont fontWithName:ARIAL size:13]];
+////        [btok setBackgroundColor:MAINCOLOR];
+////        [btok.layer setMasksToBounds:YES];
+//        [sureBT addTarget:self action:@selector(okAction) forControlEvents:UIControlEventTouchUpInside];
+////
+////        btcancle = [[UIButton alloc] initWithFrame:CGRectZero];
+////        [btcancle setTitle:@"取消" forState:UIControlStateNormal];
+////        [btcancle setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+////        [btcancle.titleLabel setFont:[UIFont fontWithName:ARIAL size:13]];
+////        [btcancle setBackgroundColor:RGB(167, 167, 167, 1)];
+////        [btcancle.layer setMasksToBounds:YES];
+//        [canculBT addTarget:self action:@selector(cancleAction) forControlEvents:UIControlEventTouchUpInside];
+////
+////        viewselect = [[UIView alloc]initWithFrame:CGRectZero];
+////        [viewselect setBackgroundColor:[UIColor whiteColor]];
+////
+////        viewline1 = [[UIView alloc]initWithFrame:CGRectZero];
+////        [viewline1 setBackgroundColor:[UIColor colorWithRed:234/255.0 green:234/255.0 blue:234/255.0 alpha:1]];
+////
+////        viewline2 = [[UIView alloc]initWithFrame:CGRectZero];
+////        [viewline2 setBackgroundColor:[UIColor colorWithRed:234/255.0 green:234/255.0 blue:234/255.0 alpha:1]];
+//
+//
+//
+//
+////        arralltitlelb = [NSMutableArray new];
+////
+////        lbyear = [[UILabel alloc]initWithFrame:CGRectZero];
+////        [lbyear setTextColor:MAINCOLOR];
+////        [lbyear setTextAlignment:NSTextAlignmentCenter];
+////        [lbyear setFont:[UIFont fontWithName:@"Arial" size:14]];
+////
+////        lbmouth = [[UILabel alloc]initWithFrame:CGRectZero];
+////        [lbmouth setTextColor:MAINCOLOR];
+////        [lbmouth setTextAlignment:NSTextAlignmentCenter];
+////        [lbmouth setFont:[UIFont fontWithName:@"Arial" size:14]];
+////
+////
+////        lbday = [[UILabel alloc]initWithFrame:CGRectZero];
+////        [lbday setTextColor:MAINCOLOR];
+////        [lbday setTextAlignment:NSTextAlignmentCenter];
+////        [lbday setFont:[UIFont fontWithName:@"Arial" size:14]];
+////
+////        lbhouar = [[UILabel alloc]initWithFrame:CGRectZero];
+////        [lbhouar setTextColor:MAINCOLOR];
+////        [lbhouar setTextAlignment:NSTextAlignmentCenter];
+////        [lbhouar setFont:[UIFont fontWithName:@"Arial" size:14]];
+////
+////        lbmintes = [[UILabel alloc]initWithFrame:CGRectZero];
+////        [lbmintes setTextColor:MAINCOLOR];
+////        [lbmintes setTextAlignment:NSTextAlignmentCenter];
+////        [lbmintes setFont:[UIFont fontWithName:@"Arial" size:14]];
+////
+////        [arralltitlelb addObject:lbyear];
+////        [arralltitlelb addObject:lbmouth];
+////        [arralltitlelb addObject:lbday];
+////        [arralltitlelb addObject:lbhouar];
+////        [arralltitlelb addObject:lbmintes];
+//    }
+//    return self;
+//}
 
 
 -(void)getdata
@@ -207,55 +266,153 @@
     UITapGestureRecognizer *tapview = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismisself)];
     [self addGestureRecognizer:tapview];
     
-    if(viewselect.height <= 1)
-    {
-        [self getdata];
+  
+    self.bigView = [[UIView alloc]initWithFrame:CGRectMake(0, kScreenHeight - downH - kWidthChange(340), kScreenWidth, kWidthChange(340))];
+    self.bigView.backgroundColor = [UIColor whiteColor];
+    [self addSubview:self.bigView];
+    
+    
+    UIButton *canculBT = [UIButton buttonWithType:UIButtonTypeCustom];
+    canculBT.frame = CGRectMake(kWidthChange(20), 0, [Toos textRect:@"取消" textFont:[UIFont systemFontOfSize:kWidthChange(18)]], kWidthChange(50));
+    [canculBT setTitle:@"取消" forState:UIControlStateNormal];
+    [canculBT setTitleColor:newColor(133, 134, 135, 1) forState:UIControlStateNormal];
+    canculBT.titleLabel.font = [UIFont systemFontOfSize:kWidthChange(18)];
+    [self.bigView addSubview:canculBT];
+    
+    UIButton *sureBT = [UIButton buttonWithType:UIButtonTypeCustom];
+    sureBT.frame = CGRectMake(kScreenWidth -kWidthChange(20) -[Toos textRect:@"取消" textFont:[UIFont systemFontOfSize:kWidthChange(18)]], 0, [Toos textRect:@"取消" textFont:[UIFont systemFontOfSize:kWidthChange(18)]], kWidthChange(50));
+    [sureBT setTitle:@"完成" forState:UIControlStateNormal];
+    [sureBT setTitleColor:newColor(241, 90, 0, 1) forState:UIControlStateNormal];
+    sureBT.titleLabel.font = [UIFont systemFontOfSize:kWidthChange(18)];
+    [self.bigView addSubview:sureBT];
+     [canculBT addTarget:self action:@selector(cancleAction) forControlEvents:UIControlEventTouchUpInside];
+     [sureBT addTarget:self action:@selector(okAction) forControlEvents:UIControlEventTouchUpInside];
+    UILabel *lineLabel = [Toos setUpWithUserLabel:@"" CGRect:CGRectMake(0, CGRectGetMaxY(sureBT.frame), kScreenWidth, 1) color:lineColor_gary textColor:RedColor textSize:14];
+    [self.bigView addSubview:lineLabel];
+    
+    for (int i = 0; i < 2; i++) {
         
-        btnowtop = btstart;
-        
-        [pickview setFrame:CGRectMake(0, self.height-190, self.width, 150)];
-        [self addSubview:pickview];
-        
-        [viewselect setFrame:CGRectMake(0, pickview.top-40, self.width, 40)];
-        [self addSubview:viewselect];
-        
-        [viewtopbutton setFrame:CGRectMake(0, viewselect.top-40, viewselect.width, 40)];
-        [self addSubview:viewtopbutton];
-        [btstart setFrame:CGRectMake(10, 0, (viewtopbutton.width-20)/2.0, viewtopbutton.height)];
-        [viewtopbutton addSubview:btstart];
-        [btend setFrame:CGRectMake(btstart.right, 0, btstart.width, viewtopbutton.height)];
-        [viewtopbutton addSubview:btend];
-        
-        
-        [viewbottombt setFrame:CGRectMake(0, pickview.bottom, pickview.width, 40)];
-        [self addSubview:viewbottombt];
-        [btok setFrame:CGRectMake(20, 5, (viewbottombt.width-60)/2.0, viewbottombt.height-10)];
-        [btok.layer setCornerRadius:2];
-        [viewbottombt addSubview:btok];
-        
-        [btcancle setFrame:CGRectMake(btok.right+20, btok.top, btok.width, btok.height)];
-        [btcancle.layer setCornerRadius:2];
-        [viewbottombt addSubview:btcancle];
-        
-        NSArray *arrttemp = [NSArray arrayWithObjects:@"年",@"月",@"日",@"时",@"分", nil];
-        for(int i = 0 ; i < _iline; i++)
-        {
-            UILabel *lb = arralltitlelb[i];
-            [lb setFrame:CGRectMake(viewselect.width/_iline*i, 0, viewselect.width/_iline, viewselect.height)];
-            [lb setText:arrttemp[i]];
-            [viewselect addSubview:lb];
+        UITextField *timeTF = [[UITextField alloc]initWithFrame:CGRectMake(kWidthChange(20) + i * (kScreenWidth - kWidthChange(90)) / 2 + i * kWidthChange(50), CGRectGetMaxY(lineLabel.frame) + kWidthChange(25), (kScreenWidth - kWidthChange(90)) / 2 , kWidthChange(40))];
+        timeTF.textColor = newColor(250, 83, 0, 1);
+        timeTF.delegate = self;
+        if (i == 0) {
+            timeTF.placeholder = @"开始日期";
+        }else {
+            
+            
+            timeTF.placeholder = @"结束日期";
         }
+       
+        [timeTF setValue:[UIFont systemFontOfSize:kWidthChange(16)] forKeyPath:@"_placeholderLabel.font"];
+        timeTF.font = [UIFont systemFontOfSize:kWidthChange(16)];
+        timeTF.textAlignment = NSTextAlignmentCenter;
         
-        [viewline1 setFrame:CGRectMake(0, 0, viewselect.width, 1)];
-        [viewselect addSubview:viewline1];
+          [self.bigView addSubview:timeTF];
+        UILabel *timeLineLabel = [Toos setUpWithUserLabel:@"" CGRect:CGRectMake(kWidthChange(20) + i * (kScreenWidth - kWidthChange(90)) / 2 + i * kWidthChange(50), CGRectGetMaxY(timeTF.frame), (kScreenWidth - kWidthChange(90)) / 2 , kWidthChange(1)) color:lineColor_gary textColor:RedColor textSize:14];
+        [self.bigView addSubview:timeLineLabel];
+        
+        timeLineLabel.tag = 10 + i;
         
         
-        [viewline2 setFrame:CGRectMake(0, viewselect.height-1, viewselect.width, 1)];
-        [viewselect addSubview:viewline2];
         
-        [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(selecttempaction) userInfo:nil repeats:NO];
+        if ( i == 0) {
+            
+            
+            timeTF.textColor = newColor(249, 106, 0, 1);
+            timeTF.text = [Toos setUpWithTime:[Toos getCurrentTimestamp] foementData:@"YYYY-MM-dd"];
+            timeLineLabel.backgroundColor = newColor(249, 106, 0, 1);
+            
+            self.startTimeTF = timeTF;
+        }else {
+            
+            self.endTimeTF = timeTF;
+            
+        }
+      
+        
+      
         
     }
+    
+    
+    
+    UILabel *ZhiLabel = [Toos setUpWithUserLabel:@"" CGRect:CGRectMake(kWidthChange(20) +  (kScreenWidth - kWidthChange(90)) / 2 +  kWidthChange(50), CGRectGetMaxY(lineLabel.frame) + kWidthChange(25), kWidthChange(50) , kWidthChange(40)) color:[UIColor clearColor] textColor:newColor(121, 122, 123, 1) textSize:kWidthChange(16)];
+    [self.bigView addSubview:ZhiLabel];
+    
+    
+    
+    pickview = [[UIPickerView alloc]initWithFrame:CGRectZero];
+    [pickview setDelegate:self];
+    [pickview setDataSource:self];
+    [pickview setBackgroundColor:[UIColor whiteColor]];
+//    self.datePicker = [[UIPickerView alloc]initWithFrame:CGRectMake(0, kWidthChange(50), kScreenWidth, kWidthChange(200))];
+//    self.datePicker.backgroundColor = [UIColor whiteColor];
+//
+//    self.datePicker.showsSelectionIndicator = YES;
+//
+//    self.datePicker.delegate = self;
+//
+//    self.datePicker.dataSource = self;
+//
+//
+//    [self.bigView addSubview:self.datePicker];
+//
+//
+//
+//    [self.datePicker reloadAllComponents];
+//
+    
+    
+    
+//    if(viewselect.height <= 1)
+//    {
+        [self getdata];
+//        
+//        btnowtop = btstart;
+//        
+        [pickview setFrame:CGRectMake(0, kWidthChange(120), self.width, kWidthChange(200))];
+        [self.bigView addSubview:pickview];
+    
+//        [viewselect setFrame:CGRectMake(0, pickview.top-40, self.width, 40)];
+//        [self addSubview:viewselect];
+//        
+//        [viewtopbutton setFrame:CGRectMake(0, viewselect.top-40, viewselect.width, 40)];
+//        [self addSubview:viewtopbutton];
+//        [btstart setFrame:CGRectMake(10, 0, (viewtopbutton.width-20)/2.0, viewtopbutton.height)];
+//        [viewtopbutton addSubview:btstart];
+//        [btend setFrame:CGRectMake(btstart.right, 0, btstart.width, viewtopbutton.height)];
+//        [viewtopbutton addSubview:btend];
+//        
+//        
+//        [viewbottombt setFrame:CGRectMake(0, pickview.bottom, pickview.width, 40)];
+//        [self addSubview:viewbottombt];
+//        [btok setFrame:CGRectMake(20, 5, (viewbottombt.width-60)/2.0, viewbottombt.height-10)];
+//        [btok.layer setCornerRadius:2];
+//        [viewbottombt addSubview:btok];
+//        
+//        [btcancle setFrame:CGRectMake(btok.right+20, btok.top, btok.width, btok.height)];
+//        [btcancle.layer setCornerRadius:2];
+//        [viewbottombt addSubview:btcancle];
+//        
+//        NSArray *arrttemp = [NSArray arrayWithObjects:@"年",@"月",@"日",@"时",@"分", nil];
+//        for(int i = 0 ; i < _iline; i++)
+//        {
+//            UILabel *lb = arralltitlelb[i];
+//            [lb setFrame:CGRectMake(viewselect.width/_iline*i, 0, viewselect.width/_iline, viewselect.height)];
+//            [lb setText:arrttemp[i]];
+//            [viewselect addSubview:lb];
+//        }
+//        
+//        [viewline1 setFrame:CGRectMake(0, 0, viewselect.width, 1)];
+//        [viewselect addSubview:viewline1];
+//        
+//        
+//        [viewline2 setFrame:CGRectMake(0, viewselect.height-1, viewselect.width, 1)];
+//        [viewselect addSubview:viewline2];
+//        
+        [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(selecttempaction) userInfo:nil repeats:NO];
+//        
+//    }
     
     
 }
@@ -323,17 +480,52 @@
 -(void)dismisself
 {
     
-    [UIView animateWithDuration:0.5 animations:^{
-        [viewtopbutton setTop:kScreenHeight];
-        [viewselect setTop:viewtopbutton.bottom];
-        [pickview setTop:viewselect.bottom];
-        [viewbottombt setTop:pickview.bottom];
-    } completion:^(BOOL finished) {
-        
-        
+//    [UIView animateWithDuration:0.5 animations:^{
+//        [viewtopbutton setTop:kScreenHeight];
+//        [viewselect setTop:viewtopbutton.bottom];
+//        [pickview setTop:viewselect.bottom];
+//        [viewbottombt setTop:pickview.bottom];
+//    } completion:^(BOOL finished) {
+//
+    
         [self removeFromSuperview];
-    }];
+//    }];
 }
+
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    
+  
+    
+    UILabel *oneLabel = (UILabel *)[self.bigView viewWithTag:10];
+      UILabel *twoLabel = (UILabel *)[self.bigView viewWithTag:11];
+    
+    if (textField == self.startTimeTF) {
+        self.isEnd = NO;
+        
+        self.startTimeTF.textColor = newColor(249, 106, 0, 1);
+         oneLabel.backgroundColor = newColor(249, 106, 0, 1);
+        
+        
+        self.endTimeTF.textColor = newColor(93, 94, 95, 1);
+        twoLabel.backgroundColor = lineColor_gary;
+        
+    }
+    if (textField == self.endTimeTF){
+        self.isEnd = YES;
+        
+        self.endTimeTF.textColor = newColor(249, 106, 0, 1);
+        twoLabel.backgroundColor = newColor(249, 106, 0, 1);
+        
+        
+        self.startTimeTF.textColor = newColor(93, 94, 95, 1);
+        oneLabel.backgroundColor = lineColor_gary;
+        
+    }
+    
+    return NO;
+}
+
 
 #pragma mark - 开始时间
 -(void)startAction
@@ -634,7 +826,12 @@
     
     
     
-    
+    if (self.isEnd == NO) {
+        self.startTimeTF.text = [NSString stringWithFormat:@"%@-%@-%@",stryear,strmouth,strday];
+    }else if (self.isEnd == YES){
+        
+        self.endTimeTF.text = [NSString stringWithFormat:@"%@-%@-%@",stryear,strmouth,strday];
+    }
     
     
     

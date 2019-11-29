@@ -11,6 +11,7 @@
 #import <Reachability.h>
 
 #import "SSKeychain.h"
+#import "LoginViewController.h"
 
 static NSString *kKeychainService = @"WT.FTKJ";
 static NSString *kKeychainDeviceId    = @"KeychainDeviceId";
@@ -28,7 +29,8 @@ static NSString *kKeychainDeviceId    = @"KeychainDeviceId";
     self.window.backgroundColor = [UIColor whiteColor];
     
     [NSThread sleepForTimeInterval:3];
-    
+    [UserModel shared].uid = @"1";
+    [[UserModel shared]saveUser];
     
     [[UINavigationBar appearance] setTitleTextAttributes:
      @{NSFontAttributeName:[UIFont systemFontOfSize:kWidthChange(18)],
@@ -48,19 +50,15 @@ static NSString *kKeychainDeviceId    = @"KeychainDeviceId";
     UITableView.appearance.estimatedSectionFooterHeight = 0;
     UITableView.appearance.estimatedSectionHeaderHeight = 0;
     
-    //    if ([Toos isBlank:[UserModel shared].uid]) {
-    //        BigLoginViewController *login = [[BigLoginViewController alloc]init];
-    //        ZFNavigationController *ZFNavi = [[ZFNavigationController alloc]initWithRootViewController:login];
-    //        self.window.rootViewController = ZFNavi;
-    //    }else {
-    
-    
-    
-    
-    // Override point for customization after application launch.
+    if ([Toos isBlank:[UserModel shared].uid]) {
+            LoginViewController *login = [[LoginViewController alloc]init];
+            ZFNavigationController *ZFNavi = [[ZFNavigationController alloc]initWithRootViewController:login];
+            self.window.rootViewController = ZFNavi;
+        }
+        else {
     TabBarController *tabBar = [[TabBarController alloc]init];
     self.window.rootViewController = tabBar;
-    //    }
+        }
 //    [self SetUpWithShareSdk];
     //[self shareAppVersionAlert];
     

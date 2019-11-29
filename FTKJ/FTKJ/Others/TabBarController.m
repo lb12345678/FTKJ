@@ -76,12 +76,12 @@
 //添加子控制器
 - (void)addChildViewControllers{
     //图片大小建议32*32
-    [self addChildrenViewController:[[HomeViewController alloc] init] andTitle:@"首页" andImageName:@"首页0" andSelectImage:@"首页1"];
-    [self addChildrenViewController:[[GoodsViewController alloc] init] andTitle:@"商品" andImageName:@"记忆0" andSelectImage:@"记忆1"];
+    [self addChildrenViewController:[[HomeViewController alloc] init] andTitle:@"首页" andImageName:@"nav1" andSelectImage:@"nav1-1"];
+    [self addChildrenViewController:[[CarBYViewController alloc] init] andTitle:@"商品" andImageName:@"nav2" andSelectImage:@"nav2-1"];
     //中间这个不设置东西，只占位
-    [self addChildrenViewController:[[CarBYViewController alloc] init] andTitle:@"汽车保养" andImageName:@"" andSelectImage:@""];
-    [self addChildrenViewController:[[MyOrderViewController alloc] init] andTitle:@"订单" andImageName:@"消息0" andSelectImage:@"消息1"];
-    [self addChildrenViewController:[[MyViewController alloc] init] andTitle:@"我的" andImageName:@"我的0" andSelectImage:@"我的1"];
+    [self addChildrenViewController:[[CarBYViewController alloc] init] andTitle:@"汽车保养" andImageName:@"nav3" andSelectImage:@"nav3-1"];
+    [self addChildrenViewController:[[MyOrderViewController alloc] init] andTitle:@"订单" andImageName:@"nav4" andSelectImage:@"nav4-1"];
+    [self addChildrenViewController:[[MyViewController alloc] init] andTitle:@"我的" andImageName:@"nav5" andSelectImage:@"nav5-1"];
 }
 
 - (void)addChildrenViewController:(UIViewController *)childVC andTitle:(NSString *)title andImageName:(NSString *)imageName andSelectImage:(NSString *)selectedImage{
@@ -191,6 +191,10 @@
 
 //tabbar选择时的代理
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    
+    [DataBaseManager sharedFMDBManager].selectNumber = tabBarController.selectedIndex;
+    
+    
 //    if (tabBarController.selectedIndex == 2){//选中中间的按钮
 //        if (self.selectItem != 2){
 //            [self rotationAnimation];

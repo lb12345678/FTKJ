@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)void(^ctext)(NSString *text);
 
+@property (nonatomic,strong)UITextField *textField;
+
+
 - (instancetype)initWithFrame:(CGRect)frame ;
    
 @end

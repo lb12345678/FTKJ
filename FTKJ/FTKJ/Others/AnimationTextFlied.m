@@ -8,7 +8,7 @@
 
 #import "AnimationTextFlied.h"
 @interface AnimationTextFlied()<UITextFieldDelegate>
-@property (nonatomic,strong)UITextField *text;
+
 @property (nonatomic,strong)UIView *xiahuaxian;
 @property (nonatomic,strong)UILabel *placeholderLab;
 @property (nonatomic,strong)UIButton *isSecureTextEntry;
@@ -18,10 +18,10 @@
 
 -(void)setFont:(UIFont *)font{
     _placeholderLab.font=font;
-    _text.font=font;
+    _textField.font=font;
 }
 -(void)setTextColor:(UIColor *)textColor{
-    _text.textColor=textColor;
+    _textField.textColor=textColor;
 }
 -(void)setPlaceholder:(NSString *)placeholder{
     _placeholderLab.text=placeholder;
@@ -34,7 +34,7 @@
 }
 -(void)setSecureTextEntry:(BOOL)secureTextEntry{
     _secureTextEntry=secureTextEntry;
-    _text.secureTextEntry=secureTextEntry;
+    _textField.secureTextEntry=secureTextEntry;
     if (!_secureTextEntry) {
         _isSecureTextEntry.selected=!_isSecureTextEntry.selected;
     }
@@ -60,23 +60,23 @@
 - (UIButton*)isSecureTextEntry {
     if (!_isSecureTextEntry) {
         _isSecureTextEntry = [UIButton new];
-        [_isSecureTextEntry setImage:[UIImage imageNamed:@"box41"] forState:UIControlStateNormal];
-        [_isSecureTextEntry setImage:[UIImage imageNamed:@"box42"] forState:UIControlStateSelected];
+        [_isSecureTextEntry setImage:[UIImage imageNamed:@"box19-1"] forState:UIControlStateNormal];
+        [_isSecureTextEntry setImage:[UIImage imageNamed:@"box20-1"] forState:UIControlStateSelected];
         _isSecureTextEntry.hidden=YES;
 
     }
     return _isSecureTextEntry;
 }
-- (UITextField*)text {
-    if (!_text) {
-        _text = [UITextField new];
-        _text.delegate=self;
-        _text.font=Font(kWidthChange(14));
-        _text.textColor=[UIColor blackColor];
+- (UITextField*)textField {
+    if (!_textField) {
+        _textField = [UITextField new];
+        _textField.delegate=self;
+        _textField.font=Font(kWidthChange(14));
+        _textField.textColor=[UIColor blackColor];
         
         
     }
-    return _text;
+    return _textField;
 }
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -88,12 +88,19 @@
 }
 
 -(void)setupView{
-    [self addSubview:self.text];
-    [self.text addSubview:self.placeholderLab];
-    [self.text addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
+    self.ty = 8.5;
+    [self addSubview:self.textField];
+    [self.textField addSubview:self.placeholderLab];
+    [self.textField addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
 
     [self addSubview:self.xiahuaxian];
     [self addSubview:self.isSecureTextEntry];
+    
+    
+  
+    
+    
+    
 }
 -(void)setupProperty {
     
@@ -103,10 +110,10 @@
     , viewHeight = CGRectGetHeight(self.bounds);
     
     
-    _text.frame=CGRectMake(0, viewHeight*0.33, viewWidth, viewHeight*0.66);
+    _textField.frame=CGRectMake(0, viewHeight*0.33, viewWidth, viewHeight*0.66);
     
     
-    //要修改transform的时候 不能使用frame布局！草
+    //要修改transform的时候 不能使用frame布局
     
     _placeholderLab.bounds=CGRectMake(0, 0, viewWidth, viewHeight*0.66);
     _placeholderLab.layer.anchorPoint=CGPointMake(0, 0);
@@ -163,7 +170,7 @@
 }
 -(void)clickHidden:(UIButton *)btn{
     btn.selected=!btn.selected;
-    self.text.secureTextEntry=!self.text.secureTextEntry;
+    self.textField.secureTextEntry=!self.textField.secureTextEntry;
 }
 /*
  // Only override drawRect: if you perform custom drawing.
@@ -172,13 +179,18 @@
  // Drawing code
  }
  */
+
+
+
+
+
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     NSLog(@"2");// 准备开始输入 文本字段将成为第一响应者
     
-    if (textField.text.length==0) {
+//    if (textField.text.length==0) {
         [self any];
-    }
+    //}
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
@@ -201,6 +213,6 @@
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.text resignFirstResponder];
+    [self.textField resignFirstResponder];
 }
 @end

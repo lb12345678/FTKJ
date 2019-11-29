@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MyOrderViewController : BaseViewController
 
+@property(nonatomic,retain)NSString *FromStr;
+
 @end
 
 NS_ASSUME_NONNULL_END

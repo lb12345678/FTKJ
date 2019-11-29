@@ -209,6 +209,11 @@
 - (void)setCornerRadius:(CGFloat)cornerRadius {
     self.layer.cornerRadius = cornerRadius;
     self.layer.masksToBounds = YES;
+    
+    
+    
+    
+    
 }
 
 - (void)setCornerRadius:(CGFloat)cornerRadius rounding:(UIRectCorner)rounding {

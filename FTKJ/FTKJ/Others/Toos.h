@@ -259,4 +259,8 @@ typedef void (^Animation) (id temp);//上拉加载
 +(double )LantitudeLongitudeDistance:(double )other_lon other_Lat:(double )other_lat self_Lon:(double )self_lon self_Lat:(double )self_lat;
 
 + (double)distanceBetweenCoordinates:(CLLocation * )from and:(CLLocation *)to;
+
++(void)setUpWithBigAttStr:(NSString *)oneStr twoStr:(NSString *)twoStr;
+
+
 @end

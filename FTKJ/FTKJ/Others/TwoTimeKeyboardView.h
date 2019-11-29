@@ -15,7 +15,7 @@
 
 @interface TwoTimeKeyboardView : UIView
 
-<UIPickerViewDelegate,UIPickerViewDataSource>
+<UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
 {
     
     NSArray *arrnowtime;
@@ -77,5 +77,13 @@
 @property (nonatomic , assign) int iline;
 ///是否到当前时间 默认是no
 @property (nonatomic , assign) BOOL isNotnowtime;
+
+@property(nonatomic,retain)UITextField *startTimeTF;
+
+@property(nonatomic,retain)UITextField *endTimeTF;
+
+@property(nonatomic,retain)UIView *bigView;
+
+@property(nonatomic,assign)BOOL isEnd;
 
 @end

@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CarBYViewController : BaseViewController
 
+@property(nonatomic,retain)NSString *FromType;
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -162,12 +162,12 @@
         if([view isKindOfClass:[UILabel class]])
         {
             UILabel *lb = (UILabel *)view;
-            [lb setTextColor:newColor(0, 0, 0, 1)];
+            [lb setTextColor:newColor(250, 129, 46, 1)];
         }
         else if([view isKindOfClass:[UIImageView class]])
         {
             UIImageView *imgv = (UIImageView *)view;
-            [imgv setBackgroundColor:newColor(0, 0, 0, 1)];
+            [imgv setBackgroundColor:newColor(250, 129, 46, 1)];
         }
     }
     

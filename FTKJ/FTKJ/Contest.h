@@ -61,7 +61,7 @@
 
 #define APP_URl @"http://bagua.59156.cn/api"
 #define APP_IMAGEURl @"http://bagua.59156.cn"
-#define NewAPP_URlImage @"http://bagua.59156.cn"
+#define APP_URlImage @"http://bagua.59156.cn"
 
 #define IOS8 ([[[UIDevice currentDevice] systemVersion] doubleValue] >=8.0 ? YES : NO)
 
